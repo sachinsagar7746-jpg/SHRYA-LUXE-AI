@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>SHRYA LUXE AI</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,#38235c,transparent 32%),
+    radial-gradient(circle at 90% 15%,#4c3820,transparent 30%),
+    #07070b;
+}
+
+header{
+  height:75px;
+  padding:0 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #292932;
+  background:rgba(5,5,8,.8);
+}
+
+.logoBox{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  border:1px solid #c6a45d;
+  color:#e7c47a;
+  font-weight:bold;
+}
+
+.logoText h1{
+  font-size:16px;
+  letter-spacing:2px;
+}
+
+.logoText small{
+  color:#888;
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+.online{
+  color:#999;
+  font-size:11px;
+}
+
+.online span{
+  width:7px;
+  height:7px;
+  display:inline-block;
+  border-radius:50%;
+  background:#62e79a;
+  margin-right:6px;
+}
+
+.container{
+  width:min(1200px,92%);
+  margin:auto;
+}
+
+.hero{
+  text-align:center;
+  padding:65px 10px 40px;
+}
+
+.tag{
+  color:#e7c47a;
+  font-size:11px;
+  letter-spacing:3px;
+  font-weight:bold;
+}
+
+.hero h2{
+  margin:15px auto;
+  max-width:850px;
+  font-size:clamp(38px,6vw,70px);
+  line-height:1;
+  letter-spacing:-3px;
+}
+
+.hero h2 span{
+  color:#e7c47a;
+}
+
+.subtitle{
+  color:#999;
+  margin-top:18px;
+}
+
+.studio{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:20px;
+}
+
+.card{
+  padding:24px;
+  border:1px solid #292932;
+  border-radius:22px;
+  background:rgba(17,17,23,.85);
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+
+label{
+  display:block;
+  margin-bottom:9px;
+  color:#ddd;
+  font-size:11px;
+  font-weight:bold;
+}
+
+textarea{
+  width:100%;
+  height:230px;
+  resize:vertical;
+  padding:15px;
+  border-radius:14px;
+  border:1px solid #30303a;
+  outline:none;
+  background:#0e0e13;
+  color:#fff;
+  font-size:14px;
+  line-height:1.5;
+}
+
+textarea:focus{
+  border-color:#c9a760;
+}
+
+.quick{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:12px 0 20px;
+}
+
+.quick button{
+  padding:9px 13px;
+  border-radius:30px;
+  border:1px solid #30303a;
+  background:#111117;
+  color:#ddd;
+  cursor:pointer;
+}
+
+.quick button:hover{
+  border-color:#d0ae69;
+}
+
+.settings{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+select{
+  width:100%;
+  padding:13px;
+  border-radius:12px;
+  border:1px solid #30303a;
+  background:#0e0e13;
+  color:#fff;
+  outline:none;
+}
+
+.generate{
+  width:100%;
+  margin-top:20px;
+  padding:16px;
+  border:0;
+  border-radius:14px;
+  cursor:pointer;
+  background:linear-gradient(100deg,#e7c47a,#f5dfa8);
+  color:#17130b;
+  font-size:15px;
+  font-weight:bold;
+}
+
+.generate:hover{
+  transform:translateY(-1px);
+}
+
+.generate:disabled{
+  opacity:.5;
+  cursor:wait;
+}
+
+.security{
+  text-align:center;
+  margin-top:11px;
+  color:#666;
+  font-size:11px;
+}
+
+.resultHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.resultHeader p{
+  margin-top:5px;
+  color:#888;
+  font-size:11px;
+}
+
+#download{
+  padding:9px 13px;
+  border-radius:10px;
+  border:1px solid #30303a;
+  background:#111117;
+  color:#fff;
+  cursor:pointer;
+}
+
+#download:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+.preview{
+  min-height:520px;
+  margin-top:10px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border-radius:16px;
+  border:1px dashed #30303a;
+  background:#0a0a0f;
+}
+
+.preview img{
+  width:100%;
+  display:block;
+}
+
+.empty{
+  text-align:center;
+  color:#888;
+  padding:30px;
+}
+
+.star{
+  color:#e7c47a;
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.empty strong{
+  display:block;
+  color:#ddd;
+  margin-bottom:7px;
+}
+
+.empty small{
+  font-size:11px;
+}
+
+footer{
+  padding:35px;
+  text-align:center;
+  color:#555;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+@media(max-width:850px){
+
+  .studio{
+    grid-template-columns:1fr;
+  }
+
+  .settings{
+    grid-template-columns:1fr;
+  }
+
+  .preview{
+    min-height:350px;
+  }
+
+  .hero{
+    padding-top:45px;
+  }
+
+  .hero h2{
+    letter-spacing:-2px;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+  <div class="logoBox">
+
+    <div class="logo">
+      SL
+    </div>
+
+    <div class="logoText">
+
+      <h1>
+        SHRYA LUXE AI
+      </h1>
+
+      <small>
+        AI IMAGE STUDIO
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <div class="online">
+    <span></span>
+    AI ONLINE
+  </div>
+
+</header>
+
+
+<main class="container">
+
+<section class="hero">
+
+  <p class="tag">
+    CREATE • IMAGINE • GENERATE
+  </p>
+
+  <h2>
+    Turn your ideas into
+    <span>beautiful images.</span>
+  </h2>
+
+  <p class="subtitle">
+    Create stunning AI images with SHRYA LUXE AI.
+  </p>
+
+</section>
+
+
+<section class="studio">
+
+
+<!-- PROMPT PANEL -->
+
+<div class="card">
+
+  <label>
+    YOUR PROMPT
+  </label>
+
+  <textarea
+    id="prompt"
+    placeholder="Describe the image you want..."
+  ></textarea>
+
+
+  <div class="quick">
+
+    <button data-prompt="
+    Ultra realistic luxury fashion portrait of a beautiful Indian woman wearing an elegant saree, cinematic lighting, natural skin texture, premium editorial photography, highly detailed.
+    ">
+      ✨ Luxury
+    </button>
+
+
+    <button data-prompt="
+    Cute cinematic portrait of a stylish young woman, soft dreamy lighting, beautiful background, photorealistic photography, natural skin texture, highly detailed.
+    ">
+      💖 Cute
+    </button>
+
+
+    <button data-prompt="
+    Indian fashion editorial portrait, elegant saree, beautiful palace background, golden hour lighting, professional DSLR photography, ultra realistic.
+    ">
+      👗 Indian
+    </button>
+
+  </div>
+
+
+  <div class="settings">
+
+    <div>
+
+      <label>
+        SIZE
+      </label>
+
+      <select id="size">
+
+        <option value="1024x1024">
+          Square 1:1
+        </option>
+
+        <option value="1024x1536">
+          Portrait
+        </option>
+
+        <option value="1536x1024">
+          Landscape
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div>
+
+      <label>
+        QUALITY
+      </label>
+
+      <select id="quality">
+
+        <option value="medium">
+          Medium
+        </option>
+
+        <option value="high">
+          High
+        </option>
+
+        <option value="low">
+          Low
+        </option>
+
+        <option value="auto">
+          Auto
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div>
+
+      <label>
+        BACKGROUND
+      </label>
+
+      <select id="background">
+
+        <option value="auto">
+          Auto
+        </option>
+
+        <option value="opaque">
+          Opaque
+        </option>
+
+        <option value="transparent">
+          Transparent
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <button
+    class="generate"
+    id="generate"
+  >
+    Generate Image ✦
+  </button>
+
+
+  <p class="security">
+    🔒 API key should stay on the server.
+  </p>
+
+</div>
+
+
+<!-- RESULT PANEL -->
+
+<div class="card">
+
+  <div class="resultHeader">
+
+    <div>
+
+      <label>
+        GENERATED IMAGE
+      </label>
+
+      <p id="status">
+        Your image will appear here.
+      </p>
+
+    </div>
+
+
+    <button
+      id="download"
+      disabled
+    >
+      Download
+    </button>
+
+  </div>
+
+
+  <div
+    id="preview"
+    class="preview"
+  >
+
+    <div class="empty">
+
+      <div class="star">
+        ✦
+      </div>
+
+      <strong>
+        Ready to create
+      </strong>
+
+      <small>
+        Enter a prompt and press Generate.
+      </small>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+  SHRYA LUXE AI © 2026
+</footer>
+
+
+<script>
+
+/* ============================
+   SHRYA LUXE AI
+   FRONTEND
+============================ */
+
+
+const promptBox =
+document.getElementById("prompt");
+
+const generateButton =
+document.getElementById("generate");
+
+const preview =
+document.getElementById("preview");
+
+const status =
+document.getElementById("status");
+
+const download =
+document.getElementById("download");
+
+const size =
+document.getElementById("size");
+
+const quality =
+document.getElementById("quality");
+
+const background =
+document.getElementById("background");
+
+
+let generatedImage = null;
+
+
+/* QUICK PROMPTS */
+
+document
+.querySelectorAll(".quick button")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      promptBox.value =
+      button.dataset.prompt.trim();
+
+      promptBox.focus();
+
+    }
+  );
+
+});
+
+
+/* GENERATE */
+
+generateButton.addEventListener(
+"click",
+async () => {
+
+  const prompt =
+  promptBox.value.trim();
+
+
+  if(!prompt){
+
+    status.textContent =
+    "Please enter a prompt.";
+
+    promptBox.focus();
+
+    return;
+
+  }
+
+
+  generateButton.disabled =
+  true;
+
+  generateButton.textContent =
+  "Creating image... ✦";
+
+  download.disabled =
+  true;
+
+
+  status.textContent =
+  "AI is creating your image...";
+
+
+  preview.innerHTML = `
+
+    <div class="empty">
+
+      <div class="star">
+        ✦
+      </div>
+
+      <strong>
+        Generating...
+      </strong>
+
+      <small>
+        Please wait.
+      </small>
+
+    </div>
+
+  `;
+
+
+  try{
+
+    /*
+      IMPORTANT:
+
+      Browser calls your backend.
+      Your API key should NEVER
+      be written here.
+    */
+
+
+    const response =
+    await fetch(
+      "/api/generate",
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
+
+        body:JSON.stringify({
+
+          prompt:prompt,
+
+          size:size.value,
+
+          quality:quality.value,
+
+          background:
+          background.value
+
+        })
+
+      }
+    );
+
+
+    const data =
+    await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        data.error ||
+        "Image generation failed."
+      );
+
+    }
+
+
+    generatedImage =
+    data.image;
+
+
+    const image =
+    document.createElement("img");
+
+
+    image.src =
+    generatedImage;
+
+
+    image.alt =
+    "SHRYA LUXE AI image";
+
+
+    preview.innerHTML =
+    "";
+
+    preview.appendChild(
+      image
+    );
+
+
+    status.textContent =
+    "Image generated successfully.";
+
+    download.disabled =
+    false;
+
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+
+    status.textContent =
+    error.message;
+
+
+    preview.innerHTML = `
+
+      <div class="empty">
+
+        <div class="star">
+          !
+        </div>
+
+        <strong>
+          Generation failed
+        </strong>
+
+        <small>
+          ${escapeHTML(error.message)}
+        </small>
+
+      </div>
+
+    `;
+
+  }
+
+
+  finally{
+
+    generateButton.disabled =
+    false;
+
+    generateButton.textContent =
+    "Generate Image ✦";
+
+  }
+
+});
+
+
+/* DOWNLOAD */
+
+download.addEventListener(
+"click",
+() => {
+
+  if(!generatedImage)
+  return;
+
+
+  const link =
+  document.createElement("a");
+
+
+  link.href =
+  generatedImage;
+
+
+  link.download =
+  "SHRYA-LUXE-AI.png";
+
+
+  document.body.appendChild(
+    link
+  );
+
+
+  link.click();
+
+
+  link.remove();
+
+});
+
+
+/* SECURITY */
+
+function escapeHTML(text){
+
+  return String(text)
+  .replace(
+    /[&<>"']/g,
+    function(character){
+
+      return {
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+
+      }[character];
+
+    }
+  );
+
+}
+
+</script>
+
+</body>
+</html>
